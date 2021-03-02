@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Feb 21 23:32:10 2021
+Spyder Editor
 
-@author: msin2
+This is a temporary script file.
 """
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -294,7 +293,8 @@ def ROC (close, timePeriod = 90):
         ROC.append( ((close[i] - close[i + timePeriod]) / close[i + timePeriod] )*100 )
     return ROC
 
-def checking_plot(my_list):  
+def checking_plot(my_list):
+    
     x = date[1:90]
     y = my_list[1:90]
     plt.plot(x, y )
@@ -305,14 +305,13 @@ def checking_plot(my_list):
 # print(MA(close_p, 5))
 # checking_plot(ROC(close_p))
 
+
 df = {'date': date[:time_frame],
       'close_price': close_p[:time_frame],
       'volume': volume[:time_frame],
       'open_price': open_p[:time_frame],
       'high': high_p[:time_frame],
       'low': low_p[:time_frame],
-      'RA_5': STD(close_p, 5)[:time_frame],
-      'RA_10': STD(close_p, 10)[:time_frame],
       'MACD': MACD(close_p)[:time_frame],
       'CCI': CCI(close_p, high_p, low_p)[:time_frame],
       'ATR': ATR(close_p, low_p, high_p)[:time_frame],
@@ -325,16 +324,17 @@ df = {'date': date[:time_frame],
       'MTM_3': MTM (close_p, 90)[:time_frame],
       'ROC': ROC(close_p, 90)[:time_frame],
       'WPR': WPR(close_p, high_p, low_p)[:time_frame],
-      'SPY_500': spy_close[:time_frame],
-      'VIX': vix_close[:time_frame],
-      'SOX': sox_close[:time_frame]
+      'spy_500': spy_close[:time_frame],
+      'vix': vix_close[:time_frame],
+      'sox': sox_close[:time_frame]
                 }
       
+    
+
 export_file = pd.DataFrame(df, columns= ['date','close_price', 'volume' , 'open_price',
-                                          'high', 'low','RA_5','RA_10','MACD', 'CCI', 'ATR',
-                                          'BOLL_middle','BOLL_upper', 'BOLL_lower', 'MA_5',
-                                          'MA_10', 'MTM_1','MTM_3', 'ROC', 'WPR', 'SPY_500',
-                                          'VIX', 'SOX'])
+                                          'high', 'low','MACD', 'CCI', 'ATR', 'BOLL_middle',
+                                          'BOLL_upper', 'BOLL_lower', 'MA_5', 'MA_10', 'MTM_1',
+                                          'MTM_3', 'ROC', 'WPR', 'spy_500','vix', 'sox'])
 export_file.to_csv("input_features.csv", header = True, index = False )
 
 
